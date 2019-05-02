@@ -11,10 +11,18 @@ API_URL = f'https://data.sfgov.org/resource/jjew-r69b.json?$$app_token={APP_TOKE
 
 def main():
     """."""
+    # get day of week
     today = DT.today().weekday() + 1
+
+    # get current time in PST
+    now = datetime.datetime.now()
+    time = str(nownow).split()[1]
+    hour = int(time[:2]) - 8
+    curr_time = f'{hour}{time[2:5]}'
+
     response = requests.get(f'{API_URL}&dayorder={today}')
     if response.status_code == 200:
-        data = response.json()
+        data = response.json()[0:5]
         # print(data)
 
 
